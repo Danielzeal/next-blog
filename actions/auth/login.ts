@@ -1,7 +1,7 @@
 "use server";
 
 import { signIn } from "@/auth";
-import { getUserByEmail } from "@/libs/user";
+import { getUserByEmail } from "@/lib/user";
 import { LOGIN_REDIRECT } from "@/route";
 import { loginSchema, LoginSchemaType } from "@/schemas/login-schema";
 
@@ -25,13 +25,6 @@ export const login = async (values: LoginSchemaType) => {
       errors: { email: ["User with this email already exists"] },
     };
   }
-
-  //   if (!user.emailVerified) {
-  //     return {
-  //       success: false,
-  //       errors: { email: ["Email is not verified"] },
-  //     };
-  //   }
 
   try {
     await signIn("credentials", {

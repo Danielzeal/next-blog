@@ -1,7 +1,11 @@
 "use server";
 
-import db from "@/libs/db";
-import { getUserByEmail } from "@/libs/user";
+import db from "@/lib/db";
+import {
+  createVerificationToken,
+  sendVerificationEmail,
+} from "@/lib/emailVerification";
+import { getUserByEmail } from "@/lib/user";
 import { registerSchema, RegisterSchemaType } from "@/schemas/register-schema";
 
 import brcypt from "bcryptjs";
@@ -28,13 +32,27 @@ export const signUp = async (values: RegisterSchemaType) => {
 
   const hashPassword = await brcypt.hash(password, 12);
 
-  await db.user.create({
-    data: {
-      email,
-      name,
-      password: hashPassword,
-    },
-  });
+  const emailToken = await createVerificationToken(email);
+  if (emailToken) {
+    await db.user.create({
+      data: {
+        email,
+        name,
+        password: hashPassword,
+      },
+    });
+  }
+  const { error } = await sendVerificationEmail(
+    emailToken.email,
+    emailToken.token
+  );
 
-  return { success: "User create successfully", errors: null };
+  if (error) {
+    return {
+      success: false,
+      errors: { email: ["Failed to send verification email"] },
+    };
+  }
+
+  return { success: "Email sent", errors: null };
 };

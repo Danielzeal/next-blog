@@ -9,9 +9,12 @@ import SocialAuth from "./social-auth";
 import { registerSchema, RegisterSchemaType } from "@/schemas/register-schema";
 import { signUp } from "@/actions/auth/register";
 import { useTransition } from "react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
   const [isPending, startTransition] = useTransition();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -23,11 +26,10 @@ const RegisterForm = () => {
       const user = await signUp(data);
 
       if (user.success) {
-        // Handle successful registration (e.g., redirect to login or dashboard)
-        console.log(user.success);
+        toast.success(user.success);
+        router.push("/login");
       } else {
-        // Handle registration errors (e.g., display error messages)
-        console.log(user.errors?.email);
+        toast.error(user.errors?.email);
       }
     });
   };

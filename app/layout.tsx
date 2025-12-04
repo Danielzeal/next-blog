@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/libs/utils";
+import { cn } from "@/lib/utils";
 import NavBar from "@/components/layout/navbar";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { auth } from "@/auth";
 import { SessionProvider } from "next-auth/react";
+import { Toaster } from "@/components/ui/sonner";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -42,6 +43,7 @@ export default async function RootLayout({
           >
             <NavBar />
             <main className="grow">{children}</main>
+            <Toaster position="top-right" />
           </ThemeProvider>
         </body>
       </html>
