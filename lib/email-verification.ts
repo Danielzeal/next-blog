@@ -46,7 +46,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
   const emailResponse = await resend.emails.send({
     from: "onboarding@resend.dev",
     to: email,
-    subject: "Hello World",
+    subject: "Verify your email",
     html: `<p>Click <a href="${verificationLink}">here</a> to verify your email.</p>`,
   });
 

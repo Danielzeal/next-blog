@@ -4,7 +4,7 @@ import db from "@/lib/db";
 import {
   createVerificationToken,
   sendVerificationEmail,
-} from "@/lib/emailVerification";
+} from "@/lib/email-verification";
 import { getUserByEmail } from "@/lib/user";
 import { registerSchema, RegisterSchemaType } from "@/schemas/register-schema";
 

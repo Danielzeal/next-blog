@@ -4,6 +4,7 @@ import { verifyEmail } from "@/actions/auth/verify-email";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Heading from "../common/heading";
+import { toast } from "sonner";
 
 const VerifyEmailClient = () => {
   const searchParams = useSearchParams();
@@ -19,11 +20,14 @@ const VerifyEmailClient = () => {
       const verified = await verifyEmail(token);
 
       if (verified.error) {
-        console.log("Email not verified");
-      } else {
-        console.log("Email verified");
+        toast.error(verified.error);
         setPending(false);
-        router.push("/login");
+      } else {
+        toast.success(verified.success);
+        setPending(false);
+        setTimeout(() => {
+          router.push("/login");
+        }, 2000);
       }
     };
 

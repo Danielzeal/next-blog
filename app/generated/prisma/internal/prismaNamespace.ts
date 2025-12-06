@@ -386,7 +386,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   User: 'User',
   Account: 'Account',
-  VerificationToken: 'VerificationToken'
+  VerificationToken: 'VerificationToken',
+  RecoverPassword: 'RecoverPassword'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -402,7 +403,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "account" | "verificationToken"
+    modelProps: "user" | "account" | "verificationToken" | "recoverPassword"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -628,6 +629,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    RecoverPassword: {
+      payload: Prisma.$RecoverPasswordPayload<ExtArgs>
+      fields: Prisma.RecoverPasswordFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RecoverPasswordFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecoverPasswordPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RecoverPasswordFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecoverPasswordPayload>
+        }
+        findFirst: {
+          args: Prisma.RecoverPasswordFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecoverPasswordPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RecoverPasswordFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecoverPasswordPayload>
+        }
+        findMany: {
+          args: Prisma.RecoverPasswordFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecoverPasswordPayload>[]
+        }
+        create: {
+          args: Prisma.RecoverPasswordCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecoverPasswordPayload>
+        }
+        createMany: {
+          args: Prisma.RecoverPasswordCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RecoverPasswordCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecoverPasswordPayload>[]
+        }
+        delete: {
+          args: Prisma.RecoverPasswordDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecoverPasswordPayload>
+        }
+        update: {
+          args: Prisma.RecoverPasswordUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecoverPasswordPayload>
+        }
+        deleteMany: {
+          args: Prisma.RecoverPasswordDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RecoverPasswordUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RecoverPasswordUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecoverPasswordPayload>[]
+        }
+        upsert: {
+          args: Prisma.RecoverPasswordUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RecoverPasswordPayload>
+        }
+        aggregate: {
+          args: Prisma.RecoverPasswordAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRecoverPassword>
+        }
+        groupBy: {
+          args: Prisma.RecoverPasswordGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RecoverPasswordGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RecoverPasswordCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RecoverPasswordCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -675,7 +750,8 @@ export const UserScalarFieldEnum = {
   image: 'image',
   password: 'password',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  role: 'role'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -708,6 +784,16 @@ export const VerificationTokenScalarFieldEnum = {
 } as const
 
 export type VerificationTokenScalarFieldEnum = (typeof VerificationTokenScalarFieldEnum)[keyof typeof VerificationTokenScalarFieldEnum]
+
+
+export const RecoverPasswordScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  token: 'token',
+  expires: 'expires'
+} as const
+
+export type RecoverPasswordScalarFieldEnum = (typeof RecoverPasswordScalarFieldEnum)[keyof typeof RecoverPasswordScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -765,6 +851,20 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'DateTime[]'
  */
 export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+/**
+ * Reference to a field of type 'UserRole'
+ */
+export type EnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole'>
+    
+
+
+/**
+ * Reference to a field of type 'UserRole[]'
+ */
+export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole[]'>
     
 
 
@@ -877,6 +977,7 @@ export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   account?: Prisma.AccountOmit
   verificationToken?: Prisma.VerificationTokenOmit
+  recoverPassword?: Prisma.RecoverPasswordOmit
 }
 
 /* Types for Logging */

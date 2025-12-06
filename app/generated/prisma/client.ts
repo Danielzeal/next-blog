@@ -54,3 +54,8 @@ export type Account = Prisma.AccountModel
  * 
  */
 export type VerificationToken = Prisma.VerificationTokenModel
+/**
+ * Model RecoverPassword
+ * 
+ */
+export type RecoverPassword = Prisma.RecoverPasswordModel

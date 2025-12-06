@@ -11,6 +11,7 @@ import { login } from "@/actions/auth/login";
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { LOGIN_REDIRECT } from "@/route";
+import Link from "next/link";
 
 const LoginForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -59,6 +60,11 @@ const LoginForm = () => {
       <Button label="Login" disabled={isPending} />
       <div className="flex justify-center my-2">or</div>
       <SocialAuth />
+      <div className="flex items-end justify-end">
+        <Link className="mt-2 underline text-sm" href={"/submit-email"}>
+          Forgot Password
+        </Link>
+      </div>
     </form>
   );
 };
