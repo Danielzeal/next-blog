@@ -10,7 +10,6 @@ export const getUserByEmail = async (email: string) => {
 
     return user;
   } catch (error) {
-    console.error("Error fetching user by email:", error);
-    throw error;
+    return null;
   }
 };

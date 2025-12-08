@@ -1,15 +1,16 @@
 "use client";
 
 import { MdNoteAlt } from "react-icons/md";
+
 import Container from "./container";
 import ThemeToggle from "./theme-toggle";
 import SearchInput from "./search-input";
 import Notification from "./notification";
 import UserButton from "./user-button";
 import Link from "next/link";
+
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
-import { is } from "zod/v4/locales";
 import { usePathname } from "next/navigation";
 
 const NavBar = () => {
@@ -26,7 +27,7 @@ const NavBar = () => {
       updateSession();
     }
   }, [isLoggedIn, path]);
-
+  console.log("NavBar Session:", session);
   return (
     <nav className="sticky top-0 border-b z-30">
       <Container>

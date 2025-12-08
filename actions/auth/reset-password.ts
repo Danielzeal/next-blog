@@ -1,3 +1,5 @@
+"use server";
+
 import db from "@/lib/db";
 import { recoverPasswordByToken } from "@/lib/recover-password";
 import { getUserByEmail } from "@/lib/user";

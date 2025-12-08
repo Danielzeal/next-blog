@@ -31,10 +31,10 @@ export const createPasswordToken = async (email: string) => {
 
   const existingtoken = await recoverPasswordByEmail(email);
 
-  if (existingtoken && "id" in existingtoken) {
-    await db.verificationToken.delete({
+  if (existingtoken) {
+    await db.verificationToken.deleteMany({
       where: {
-        id: existingtoken.id,
+        token: existingtoken.token,
       },
     });
   }

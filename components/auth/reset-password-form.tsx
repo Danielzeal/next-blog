@@ -32,7 +32,6 @@ const ResetPasswordForm = () => {
   const onSubmit = (data: PasswordResetSchemaType) => {
     startTransition(async () => {
       if (!token) return;
-
       const resetPassword = await ResetPassword(token, data);
       if (resetPassword?.success) {
         toast.success(resetPassword.success);

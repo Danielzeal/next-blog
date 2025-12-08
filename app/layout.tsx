@@ -31,7 +31,7 @@ export default async function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body
           className={cn(
-            "antialiased flex flex-col min-h-screen",
+            "antialiased flex flex-col min-h-screen bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-50",
             poppins.variable
           )}
         >
