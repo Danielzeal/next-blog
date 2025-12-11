@@ -1,3 +1,5 @@
+"use client";
+
 import { Bell } from "lucide-react";
 import { DropdownMenu, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { DropdownMenuContent } from "@radix-ui/react-dropdown-menu";

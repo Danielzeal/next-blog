@@ -22,7 +22,7 @@ export const login = async (values: LoginSchemaType) => {
   if (!user || !email || !password || !user.password) {
     return {
       success: false,
-      errors: { email: ["User with this email already exists"] },
+      errors: { email: ["User with this email does not exists"] },
     };
   }
 

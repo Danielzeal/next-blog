@@ -37,7 +37,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       token.role = user.role;
       token.userId = user.id;
 
-      console.log("JWT Callback:", token);
       return token;
     },
     async session({ session, token }) {

@@ -10,15 +10,18 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { FaRegBookmark } from "react-icons/fa";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 const UserButton = () => {
+  const session = useSession();
+
+  const imgUrl = session?.data?.user.image || "";
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
           <Avatar>
-            <AvatarImage />
+            <AvatarImage src={imgUrl} />
             <AvatarFallback className="border-2 border-slate-500">
               <UserRound />
             </AvatarFallback>

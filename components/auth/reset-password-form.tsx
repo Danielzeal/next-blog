@@ -17,10 +17,11 @@ import { ResetPassword } from "@/actions/auth/reset-password";
 
 const ResetPasswordForm = () => {
   const searchParams = useSearchParams();
-  const token = searchParams.get("token");
   const router = useRouter();
 
   const [isPending, startTransition] = useTransition();
+  const token = searchParams.get("token");
+
   const {
     register,
     handleSubmit,

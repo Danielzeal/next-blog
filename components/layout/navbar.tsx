@@ -27,7 +27,7 @@ const NavBar = () => {
       updateSession();
     }
   }, [isLoggedIn, path]);
-  console.log("NavBar Session:", session);
+
   return (
     <nav className="sticky top-0 border-b z-30">
       <Container>

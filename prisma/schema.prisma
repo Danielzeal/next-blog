@@ -19,7 +19,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  role UserRole @default(ADMIN)
+  role UserRole @default(USER)
 }
 
 model Account {

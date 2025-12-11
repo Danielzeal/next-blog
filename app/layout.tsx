@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/layout/theme-provider";
 import { auth } from "@/auth";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "@/components/ui/sonner";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -27,26 +28,28 @@ export default async function RootLayout({
 }>) {
   const session = await auth();
   return (
-    <SessionProvider session={session}>
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={cn(
-            "antialiased flex flex-col min-h-screen bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-50",
-            poppins.variable
-          )}
-        >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
+    <EdgeStoreProvider>
+      <SessionProvider session={session}>
+        <html lang="en" suppressHydrationWarning>
+          <body
+            className={cn(
+              "antialiased flex flex-col min-h-screen bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-50",
+              poppins.variable
+            )}
           >
-            <NavBar />
-            <main className="grow">{children}</main>
-            <Toaster position="top-right" />
-          </ThemeProvider>
-        </body>
-      </html>
-    </SessionProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <NavBar />
+              <main className="grow">{children}</main>
+              <Toaster position="top-right" />
+            </ThemeProvider>
+          </body>
+        </html>
+      </SessionProvider>
+    </EdgeStoreProvider>
   );
 }
